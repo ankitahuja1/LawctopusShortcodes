@@ -1,54 +1,52 @@
 // Add Shortcode
-function razorpay_link_generator( $atts , $content = null ) {
+function razorpay_link_generator( $atts , $content = "click here to register for this course" ) {
 
 	// Attributes
-	$atts = shortcode_atts(
-		array(
-		    'course' => 'ugc-law',			
-		),
-		$atts
-	);
+	extract(shortcode_atts(array(
+		    'course' => '',			
+		), $atts));
 	
-	$course = $args['course'];
+
 	
-	if ($course = 'ugc-law'){
+	if ($course == 'ugc-law'){
 		$razorpay_id = 'pl_JCQp9UQQ1ZzgST';
 	}
-	elseif ($course = 'lrw'){
+	elseif ($course == 'cdn'){
+		$razorpay_id = 'pl_JCy3AHOe3uNpah';
+	}
+	elseif ($course == 'lrw'){
 		$razorpay_id = 'pl_JCy6fKm9QMEe6D';
 	}
-	elseif ($course = 'litigation'){
+	elseif ($course == 'litigation'){
 		$razorpay_id = 'pl_JCy9qlqqJSXFud';
 	}
-	elseif ($course = 'patent'){
+	elseif ($course == 'patent'){
 		$razorpay_id = 'pl_JCyBxDsD1LSGda';
 	}
 	elseif ($course = 'copyright'){
-		$razorpay_id = 'pl_JCyDbgZG9SJqP7';
+		$razorpay_id == 'pl_JCyDbgZG9SJqP7';
 	}
-	elseif ($course = 'ipr'){
+	elseif ($course == 'ipr'){
 		$razorpay_id = 'pl_JCyFkMtnL0H2lv';
 	}
-	elseif ($course = 'mooting'){
+	elseif ($course == 'mooting'){
 		$razorpay_id = 'pl_JCyHeaqycq281C';
 	}
-	elseif ($course = 'mooting'){
-		$razorpay_id = 'pl_JCyHeaqycq281C';
-	}
-	elseif ($course = 'trademarks'){
+	elseif ($course == 'trademarks'){
 		$razorpay_id = 'pl_JCyJ05RhjVLl1x';
 	}
-	elseif ($course = 'tmt'){
+	elseif ($course == 'tmt'){
 		$razorpay_id = 'pl_JCyKSwtHZ5g823';
 	}
-	elseif ($course = 'ugc-paper1'){
+	elseif ($course == 'ugc-paper1'){
 		$razorpay_id = 'pl_JCyMDYgP4uzccj';
 	}
 	else {
 		$razorpay_id = 'pl_JCy6fKm9QMEe6D';
 	}
 	
-//	$output='<form> <span><a href="https://razorpay.com/payment-button/'. $razorpay_id .'/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button">'. $content .'</a></span></form>';
+	$course_text=array();
+	$course_text[$razorpay_id] = $content;
 	
 	$output='
 	<style>.payment-text-dynamic .PaymentButton {color: #f6a11e !important;background: initial !important; } .PaymentButton-text{font-size:unset !important; visibility: hidden;}</style>
@@ -56,9 +54,14 @@ function razorpay_link_generator( $atts , $content = null ) {
 	<div class="payment-text-dynamic"><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="'. $razorpay_id .'" async> </script> </form></div>
 	
 	<script>
+	console.log("'. $course_text[$razorpay_id] .'");
+	var razData = {};
+	razData["'.$razorpay_id.'"] = "'. $course_text[$razorpay_id] .'";
+	console.log(razData);
 	window.onload = () => { var razBtn = document.querySelectorAll(".PaymentButton-contents .PaymentButton-text");
 		for (i = 0; i < razBtn.length; ++i) {
-			razBtn[i].innerHTML = "'. $content .'"; 
+			let razDataId = razBtn[i].parentElement.parentElement.parentElement.previousElementSibling.getAttribute("data-payment_button_id"); 
+			razBtn[i].innerHTML = razDataId; 
 			razBtn[i].style.visibility = "visible";
 		}
 	}
