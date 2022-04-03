@@ -55,13 +55,15 @@ function razorpay_link_generator( $atts , $content = "click here to register for
 	
 	<script>
 	console.log("'. $course_text[$razorpay_id] .'");
-	var razData = {};
+	if (typeof razData == "undefined"){
+		var razData = {};
+	}
 	razData["'.$razorpay_id.'"] = "'. $course_text[$razorpay_id] .'";
 	console.log(razData);
 	window.onload = () => { var razBtn = document.querySelectorAll(".PaymentButton-contents .PaymentButton-text");
 		for (i = 0; i < razBtn.length; ++i) {
 			let razDataId = razBtn[i].parentElement.parentElement.parentElement.previousElementSibling.getAttribute("data-payment_button_id"); 
-			razBtn[i].innerHTML = razDataId; 
+			razBtn[i].innerHTML = razData[razDataId]; 
 			razBtn[i].style.visibility = "visible";
 		}
 	}
