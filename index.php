@@ -46,7 +46,7 @@ function razorpay_link_generator( $atts , $content = "click here to register for
 	}
 
 	$output='
-	<style>.payment-text-dynamic .PaymentButton {color: #f6a11e !important;background: initial !important; } .PaymentButton-text{font-size:unset !important; visibility: hidden;}</style>
+	<style>.payment-text-dynamic .PaymentButton {color: #f6a11e !important;background: initial !important; } .PaymentButton-text{font-size:unset !important; visibility: hidden; line-height: initial !important;} .PaymentButton.svelte-ekc7fv.svelte-ekc7fv{height:unset}.payment-text-dynamic form,.payment-text-dynamic h1,.payment-text-dynamic h2,.payment-text-dynamic h3,.payment-text-dynamic h4,.payment-text-dynamic h5,.payment-text-dynamic h6{ margin: 0;} </style>
 	
 	<div data-raz-cont="'. $content .'" class="payment-text-dynamic"><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="'. $razorpay_id .'" async> </script> </form></div>
 	
@@ -55,7 +55,7 @@ function razorpay_link_generator( $atts , $content = "click here to register for
 	
 	window.onload = () => { var razBtn = document.querySelectorAll(".PaymentButton-contents .PaymentButton-text");
 		for (i = 0; i < razBtn.length; ++i) {
-			let razCont = razBtn[i].parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("data-raz-cont"); 
+			let razCont = razBtn[i].parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("data-raz-cont");
 			console.log(razCont);
 			razBtn[i].innerHTML = razCont; 
 			razBtn[i].style.visibility = "visible";
