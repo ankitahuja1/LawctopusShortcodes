@@ -46,7 +46,7 @@ function razorpay_link_generator( $atts , $content = "click here to register for
 	}
 
 	$output='
-	<style>.payment-text-dynamic .PaymentButton {color: #f6a11e !important;background: initial !important; } .PaymentButton-text{font-size:unset !important; visibility: hidden; line-height: initial !important;} .PaymentButton.svelte-ekc7fv.svelte-ekc7fv{height:unset}.payment-text-dynamic form,.payment-text-dynamic h1,.payment-text-dynamic h2,.payment-text-dynamic h3,.payment-text-dynamic h4,.payment-text-dynamic h5,.payment-text-dynamic h6{ margin: 0;} </style>
+	<style>.payment-text-dynamic .PaymentButton {color: #f6a11e !important;background: initial !important; } .PaymentButton-text{font-size:unset !important; visibility: hidden; line-height: initial !important;} .PaymentButton.svelte-ekc7fv.svelte-ekc7fv{height:unset; font-family:unset; text-align: unset; padding: 0!important}.payment-text-dynamic form,.payment-text-dynamic h1,.payment-text-dynamic h2,.payment-text-dynamic h3,.payment-text-dynamic h4,.payment-text-dynamic h5,.payment-text-dynamic h6{ margin: 0;} .PaymentButton--rzpTheme.svelte-ekc7fv .PaymentButton-contents.svelte-ekc7fv, .elementor-widget-container .PaymentButton-contents.svelte-ekc7fv.svelte-ekc7fv, .PaymentButton.svelte-ekc7fv.svelte-ekc7fv {padding: unset !important} .elementor-widget-container .PaymentButton--rzp-dark-standard.svelte-ekc7fv.svelte-ekc7fv { border-radius: unset }</style>
 	
 	<div data-raz-cont="'. $content .'" class="payment-text-dynamic"><form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="'. $razorpay_id .'" async> </script> </form></div>
 	
