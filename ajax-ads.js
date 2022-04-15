@@ -17,19 +17,23 @@ var NewElement = document.createElement('div');
 NewElement.innerHTML = 'New Element';
 NewElement.id = 'NewElement';
 
+
+
 // Callback function to execute when mutations are observed
-const callback = function(mutationsList, observer) {
-    // Use traditional 'for loops' for IE 11
-    for(const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            console.log('A child node has been added or removed.');
-            var postListAds = document.querySelectorAll('.jet-listing-grid__item')
-            for (i=0; i<postListAds.length/3; i++){
-                console.log(i + " and total posts is " + postListAds.length + " and sum is " + i*3);
-                NewElement.appendBefore(postListAds[i*3]);
-            }
+var callback = () => {
+    setTimeout(
+    function(){
+    let postListAds = document.querySelectorAll('.jet-listing-grid__item');
+    let adsCount = document.querySelectorAll('.code-block-4');
+    console.log(adsCount.length*3*2.5 + " vs " + postListAds.length);
+      if(adsCount.length*3*2.5 < postListAds.length){
+      console.log('A child node has been added or removed.');
+        for (i=0; i<postListAds.length/3; i++){
+            console.log(i + " and total posts is " + postListAds.length + " and sum is " + i*3);
+            //NewElement.appendBefore(postListAds[i*3]);
         }
-    }
+      }
+    }, 5000)
 };
 
 // Create an observer instance linked to the callback function
