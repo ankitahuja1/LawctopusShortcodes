@@ -10,37 +10,35 @@ Element.prototype.appendBeforeThis = function (element) {
 }, false;
 
 Element.prototype.appendBefore = function (element) {
-    element.parentNode.insertBefore(this, element);
+    element.parentNode.insertBefore(this, element)
 }, false;
 
 var NewElement = document.createElement('div');
 NewElement.innerHTML = 'New Element';
-NewElement.id = 'NewElement';
-
-
+NewElement.className = 'code-block-4';
 
 // Callback function to execute when mutations are observed
-var callback = () => {
-    setTimeout(
-    function(){
+var adsInsert = () => {
     let postListAds = document.querySelectorAll('.jet-listing-grid__item');
     let adsCount = document.querySelectorAll('.code-block-4');
-    console.log(adsCount.length*3*2.5 + " vs " + postListAds.length);
-      if(adsCount.length*3*2.5 < postListAds.length){
-      console.log('A child node has been added or removed.');
-        for (i=0; i<postListAds.length/3; i++){
-            console.log(i + " and total posts is " + postListAds.length + " and sum is " + i*3);
-            //NewElement.appendBefore(postListAds[i*3]);
+    console.log('A child node has been added or removed.');
+    for (i=1; i<postListAds.length/3; i++){
+        console.log(postListAds[i].previousElementSibling);
+        if(!postListAds[i*3].previousElementSibling.classList.contains('code-block-4')){
+          NewElement.cloneNode(true).appendBefore(postListAds[i*3]);
         }
-      }
-    }, 5000)
-};
+    }
+} 
+
+(() => { adsInsert(); setInterval(adsInsert, 1000); })();
+
+//document.querySelector('#btn-load-more').addEventListener('click', callback);
 
 // Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
+//const observer = new MutationObserver(callback);
 
 // Start observing the target node for configured mutations
-observer.observe(targetNode, config)
+//observer.observe(targetNode, config)
 
 var ads = 
 [
