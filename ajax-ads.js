@@ -8,8 +8,17 @@ Element.prototype.appendBefore = function (element) {
 }, false;
 
 var NewElement = document.createElement('div');
-NewElement.innerHTML = 'New Element';
 NewElement.className = 'code-block-4';
+
+var NewAnchor = document.createElement('a')
+NewAnchor.href="https://lawc.to/iim-rohatak-top-banner";
+
+var NewImage = document.createElement('img');
+NewImage.src = "https://www.lawctopus.com/wp-content/uploads/2022/04/iim-rohtak-admission-2022-top-banner-2.webp";
+NewImage.style.margin = "14px 0";
+
+NewAnchor.appendChild(NewImage);
+NewElement.appendChild(NewAnchor);
 
 // Callback function to execute when mutations are observed
 var adsInsert = postsAfter => {
