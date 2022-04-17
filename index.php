@@ -1,3 +1,6 @@
+//just for git
+<?php
+
 // Add Shortcode
 function razorpay_link_generator( $atts , $content = "click here to register for this course" ) {
 
@@ -67,3 +70,7 @@ function razorpay_link_generator( $atts , $content = "click here to register for
 return $output;
 }
 add_shortcode( 'pay-link', 'razorpay_link_generator' );
+
+
+//just for git
+?>
